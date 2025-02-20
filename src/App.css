@@ -46,7 +46,12 @@ h6 {
 
 @font-face {
   font-family: "SF Pro";
-  src: url(../public/SF-Pro-Display-Regular.otf);
+  src: url(/SF-Pro-Display-Regular.otf);
+}
+
+@font-face {
+  font-family: "Holla Mediaeval";
+  src: url(/HollaMediaeval.ttf);
 }
 
 body {
@@ -71,7 +76,18 @@ header {
   align-items: center;
 }
 
+.title {
+  font-family: "Holla Mediaeval", "Times New Roman", Times, serif;
+}
+
+.name {
+  font-size: 38px;
+}
+
 main {
+  padding: 50px;
+  height: 100%;
+  width: 100%;
   flex-grow: 1;
   position: relative;
 }
