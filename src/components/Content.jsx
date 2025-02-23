@@ -1,12 +1,13 @@
 import { useRef, useState, useEffect } from "react";
-import folderImg from "../assets/folder.webp";
+import bookImg from "../assets/textImg.webp";
+import terminalImg from "../assets/terminal.webp";
 const PADDING = 25;
 
 function Content() {
   return (
     <main>
       <Folder side={"left"} text={"Work"} />
-      <Folder side={"right"} text={"Words"} />
+      <Folder side={"right"} text={"Blog"} />
     </main>
   );
 }
@@ -23,6 +24,16 @@ function Folder({ side, text }) {
     }
   }, [side]);
 
+  const handleResize = (prevWidth, newWidth) => {
+    if (!folderRef.current) return;
+
+    if (prevWidth === newWidth) return;
+
+    if (prevWidth < newWidth) {
+      
+    }
+  }
+
   const handleMouseDown = (e) => {
     startX.current = e.clientX;
     startY.current = e.clientY;
@@ -36,8 +47,8 @@ function Folder({ side, text }) {
 
     folderRef.current.style.cursor = "grab";
 
-    const containerWidth = folderRef.current.parentElement.getBoundingClientRect().width;
     const containerHeight = folderRef.current.parentElement.getBoundingClientRect().height;
+    const containerWidth = folderRef.current.parentElement.getBoundingClientRect().width;
 
     const folderWidth = folderRef.current.offsetWidth;
     const folderHeight = folderRef.current.offsetHeight;
@@ -71,24 +82,14 @@ function Folder({ side, text }) {
   };
 
   const generateLocation = (side) => {
-    //REFACTOR THIS TO GENERATE A ROUGH LOCATION IN THE SPOT YOU WANT, BASED OFF OF THE WINDOW SIZE.
-    //THEN CREATE FUNCTION TO LISTEN FOR WINDOW RESIZE (new style.top = old style.top +- (new windowsize - old windowsize)  )
     if (!folderRef.current) return side === "left" ? { top: "50px", left: "50px" } : { top: "170px", left: "190px" }
 
-    const minTop = PADDING * 2;
-    const maxTop = folderRef.current.parentElement.getBoundingClientRect().height - PADDING * 2;
-    const minLeft = side === "left" ? PADDING * 2 : Math.ceil(folderRef.current.parentElement.getBoundingClientRect().width / 2) - PADDING;
-    const maxLeft = side === "left" ? Math.floor(folderRef.current.parentElement.getBoundingClientRect().width / 2) - PADDING : folderRef.current.parentElement.getBoundingClientRect().width - PADDING * 2;
-
-    const getRandomValue = (min, max) => {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1) + min)
-    }
+    const containerWidth = Math.floor(folderRef.current.parentElement.getBoundingClientRect().width)
+    const containerHeight = Math.ceil(folderRef.current.parentElement.getBoundingClientRect().height)
 
     return {
-      top: getRandomValue(minTop, maxTop) + "px",
-      left: getRandomValue(minLeft, maxLeft) + "px"
+      top: side === "left" ? (containerHeight / 6) : (containerHeight / 3) + "px",
+      left: side === "left" ? (containerWidth / 5) : ((containerWidth / 2) + (containerWidth / 5)) + "px"
     }
   }
 
@@ -99,7 +100,7 @@ function Folder({ side, text }) {
       className="folder-container"
       onMouseDown={handleMouseDown}
     >
-      <img draggable="false" className="folder-image" src={folderImg} alt="MacOS folder icon" />
+      <img draggable="false" className="folder-image" src={side === "left" ? terminalImg : bookImg} alt="MacOS folder icon" />
       <p>{text}</p>
     </div>
   );
