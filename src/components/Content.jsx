@@ -4,6 +4,7 @@ import terminalImg from "../assets/terminal.webp";
 const PADDING = 25;
 
 function Content() {
+
   return (
     <main>
       <Folder side={"left"} text={"Work"} />
@@ -24,15 +25,31 @@ function Folder({ side, text }) {
     }
   }, [side]);
 
-  const handleResize = (prevWidth, newWidth) => {
-    if (!folderRef.current) return;
+  useEffect(() => {
+    const handleResize = () => {
+      if (!folderRef.current) return;
 
-    if (prevWidth === newWidth) return;
+      const containerWidth = folderRef.current.parentElement.getBoundingClientRect().width;
+      const containerHeight = folderRef.current.parentElement.getBoundingClientRect().height;
+      const folderWidth = folderRef.current.offsetWidth;
+      const folderHeight = folderRef.current.offsetHeight;
 
-    if (prevWidth < newWidth) {
-      
+      setPosition((prev) => {
+        let newLeft = parseInt(prev.left, 10);
+        let newTop = parseInt(prev.top, 10);
+
+        newLeft = Math.max(PADDING, Math.min(newLeft, containerWidth - folderWidth - PADDING));
+        newTop = Math.max(PADDING, Math.min(newTop, containerHeight - folderHeight - PADDING));
+
+        return { top: `${newTop}px`, left: `${newLeft}px` };
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize)
     }
-  }
+  }, []);
 
   const handleMouseDown = (e) => {
     startX.current = e.clientX;
