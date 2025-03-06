@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import bookImg from "../assets/textImg.webp";
 import terminalImg from "../assets/terminal.webp";
+import Window from "./Window";
 const PADDING = 25;
 
 function Content() {
@@ -9,6 +10,7 @@ function Content() {
     <main>
       <Folder side={"left"} text={"Work"} />
       <Folder side={"right"} text={"Blog"} />
+      <Window />
     </main>
   );
 }
