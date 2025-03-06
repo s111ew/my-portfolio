@@ -2,24 +2,30 @@ import { useRef, useState, useEffect } from "react";
 import bookImg from "../assets/textImg.webp";
 import terminalImg from "../assets/terminal.webp";
 import Window from "./Window";
-const PADDING = 25;
+const PADDING = 50;
 
 function Content() {
+  const [windowIsVisible, setWindowIsVisible] = useState(true)
+
+  function handleClick() {
+    setWindowIsVisible(true)
+  }
 
   return (
     <main>
-      <Folder side={"left"} text={"Work"} />
-      <Folder side={"right"} text={"Blog"} />
-      <Window />
+      <Folder setWindowIsVisible={setWindowIsVisible} side={"left"} text={"Work"} />
+      <Folder setWindowIsVisible={setWindowIsVisible} onClick={handleClick} side={"right"} text={"Blog"} />
+      {windowIsVisible ? <Window setWindowIsVisible={setWindowIsVisible} /> : ''}
     </main>
   );
 }
 
-function Folder({ side, text }) {
+function Folder({ setWindowIsVisible, side, text }) {
   const folderRef = useRef(null);
   const startX = useRef(0);
   const startY = useRef(0);
   const [position, setPosition] = useState({ top: "50px", left: "50px" });
+  const [isClick, setIsClick] = useState(true)
 
   useEffect(() => {
     if (folderRef.current) {
@@ -64,6 +70,8 @@ function Folder({ side, text }) {
   const handleMouseMove = (e) => {
     if (!folderRef.current) return;
 
+    setIsClick(false)
+
     folderRef.current.style.cursor = "grab";
 
     const containerHeight = folderRef.current.parentElement.getBoundingClientRect().height;
@@ -86,9 +94,8 @@ function Folder({ side, text }) {
     if (newTop > boundingBottom || newTop < boundingTop || newLeft > boundingRight || newLeft < boundingLeft) {
         return
       }
-
-    folderRef.current.style.top = newTop + "px"
-    folderRef.current.style.left = newLeft + "px"
+    
+    setPosition({top: newTop + "px", left: newLeft + "px"});
 
     startX.current = e.clientX;
     startY.current = e.clientY;
@@ -98,6 +105,10 @@ function Folder({ side, text }) {
     folderRef.current.style.cursor = "pointer"
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", handleMouseUp);
+    if (isClick) {
+      setWindowIsVisible(true)
+    }
+    setIsClick(true)
   };
 
   const generateLocation = (side) => {
