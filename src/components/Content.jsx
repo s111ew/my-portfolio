@@ -1,31 +1,30 @@
 import { useRef, useState, useEffect } from "react";
 import bookImg from "../assets/textImg.webp";
 import terminalImg from "../assets/terminal.webp";
+import contactsImg from "../assets/contacts.webp";
 import Window from "./Window";
 const PADDING = 50;
 
 function Content() {
-  const [windowIsVisible, setWindowIsVisible] = useState(true)
-
-  function handleClick() {
-    setWindowIsVisible(true)
-  }
+  const [windowIsVisible, setWindowIsVisible] = useState(false)
 
   return (
     <main>
-      <Folder setWindowIsVisible={setWindowIsVisible} side={"left"} text={"Work"} />
-      <Folder setWindowIsVisible={setWindowIsVisible} onClick={handleClick} side={"right"} text={"Blog"} />
+      <Folder setWindowIsVisible={setWindowIsVisible} src={terminalImg} side={"left"} text={"Work"} />
+      <Folder setWindowIsVisible={setWindowIsVisible} src={contactsImg} side={"middle"} text={"Contact"} />
+      <Folder setWindowIsVisible={setWindowIsVisible} src={bookImg} side={"right"} text={"Blog"} />
       {windowIsVisible ? <Window setWindowIsVisible={setWindowIsVisible} /> : ''}
     </main>
   );
 }
 
-function Folder({ setWindowIsVisible, side, text }) {
+function Folder({ setWindowIsVisible, side, text, src }) {
   const folderRef = useRef(null);
   const startX = useRef(0);
   const startY = useRef(0);
+  const checkIsClickX = useRef(0);
+  const checkIsClickY = useRef(0);
   const [position, setPosition] = useState({ top: "50px", left: "50px" });
-  const [isClick, setIsClick] = useState(true)
 
   useEffect(() => {
     if (folderRef.current) {
@@ -63,14 +62,15 @@ function Folder({ setWindowIsVisible, side, text }) {
     startX.current = e.clientX;
     startY.current = e.clientY;
 
+    checkIsClickX.current = e.clientX;
+    checkIsClickY.current = e.clientY;
+
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
   };
 
   const handleMouseMove = (e) => {
     if (!folderRef.current) return;
-
-    setIsClick(false)
 
     folderRef.current.style.cursor = "grab";
 
@@ -101,25 +101,38 @@ function Folder({ setWindowIsVisible, side, text }) {
     startY.current = e.clientY;
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (e) => {
+    if (checkIsClickX.current === e.clientX && checkIsClickY.current === e.clientY) {
+      setWindowIsVisible(true)
+    }
+
     folderRef.current.style.cursor = "pointer"
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", handleMouseUp);
-    if (isClick) {
-      setWindowIsVisible(true)
-    }
-    setIsClick(true)
   };
 
   const generateLocation = (side) => {
-    if (!folderRef.current) return side === "left" ? { top: "50px", left: "50px" } : { top: "170px", left: "190px" }
+    if (!folderRef.current) {
+      switch (side) {
+        case "left":
+          return { top: "50px", left: "50px" };
+        case "middle":
+          return { top: "200px", left: "100px"};
+        case "right":
+          return { top: "170px", left: "190px" };
+      }
+    }
 
     const containerWidth = Math.floor(folderRef.current.parentElement.getBoundingClientRect().width)
     const containerHeight = Math.ceil(folderRef.current.parentElement.getBoundingClientRect().height)
 
-    return {
-      top: side === "left" ? (containerHeight / 6) : (containerHeight / 3) + "px",
-      left: side === "left" ? (containerWidth / 5) : ((containerWidth / 2) + (containerWidth / 5)) + "px"
+    switch (side) {
+      case "left":
+        return { top: (containerHeight / 6) + "px", left: (containerWidth / 5) + "px" };
+      case "middle":
+        return { top: (containerHeight / 2) + "px", left: (containerWidth / 2) + "px"};
+      case "right":
+        return { top: (containerHeight / 3) + "px", left: ((containerWidth / 2) + (containerWidth / 5)) + "px" };
     }
   }
 
@@ -130,7 +143,7 @@ function Folder({ setWindowIsVisible, side, text }) {
       className="folder-container"
       onMouseDown={handleMouseDown}
     >
-      <img draggable="false" className="folder-image" src={side === "left" ? terminalImg : bookImg} alt="MacOS folder icon" />
+      <img draggable="false" className="folder-image" src={src} alt="MacOS folder icon" />
       <p>{text}</p>
     </div>
   );
