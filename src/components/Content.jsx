@@ -7,18 +7,19 @@ const PADDING = 50;
 
 function Content() {
   const [windowIsVisible, setWindowIsVisible] = useState(false)
+  const [content, setContent] = useState("")
 
   return (
     <main>
-      <Folder setWindowIsVisible={setWindowIsVisible} src={terminalImg} side={"left"} text={"Work"} />
-      <Folder setWindowIsVisible={setWindowIsVisible} src={contactsImg} side={"middle"} text={"Contact"} />
-      <Folder setWindowIsVisible={setWindowIsVisible} src={bookImg} side={"right"} text={"Blog"} />
-      {windowIsVisible ? <Window setWindowIsVisible={setWindowIsVisible} /> : ''}
+      <Folder id={"work"} setContent={setContent} setWindowIsVisible={setWindowIsVisible} src={terminalImg} side={"left"} text={"Work"} />
+      <Folder id={"contact"} setContent={setContent} setWindowIsVisible={setWindowIsVisible} src={contactsImg} side={"middle"} text={"Contact"} />
+      <Folder id={"blog"} setContent={setContent} setWindowIsVisible={setWindowIsVisible} src={bookImg} side={"right"} text={"Blog"} />
+      {windowIsVisible ? <Window content={content} setWindowIsVisible={setWindowIsVisible} /> : ''}
     </main>
   );
 }
 
-function Folder({ setWindowIsVisible, side, text, src }) {
+function Folder({ id, setContent, setWindowIsVisible, side, text, src }) {
   const folderRef = useRef(null);
   const startX = useRef(0);
   const startY = useRef(0);
@@ -103,6 +104,7 @@ function Folder({ setWindowIsVisible, side, text, src }) {
 
   const handleMouseUp = (e) => {
     if (checkIsClickX.current === e.clientX && checkIsClickY.current === e.clientY) {
+      setContent(e.target.id)
       setWindowIsVisible(true)
     }
 
@@ -143,7 +145,7 @@ function Folder({ setWindowIsVisible, side, text, src }) {
       className="folder-container"
       onMouseDown={handleMouseDown}
     >
-      <img draggable="false" className="folder-image" src={src} alt="MacOS folder icon" />
+      <img draggable="false" id={id} className="folder-image" src={src} />
       <p>{text}</p>
     </div>
   );

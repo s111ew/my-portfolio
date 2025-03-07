@@ -7,16 +7,7 @@ import nodeIcon from '../assets/icons/icon_node.webp'
 import expressIcon from '../assets/icons/icon_express.webp'
 import mongoIcon from '../assets/icons/icon_mongo.webp'
 
-const iconImages = [
-  {key: 1, src: jsIcon},
-  {key: 2, src: reactIcon},
-  {key: 3, src: viteIcon},
-  {key: 4, src: nodeIcon},
-  {key: 5, src: expressIcon},
-  {key: 6, src: mongoIcon},
-]
-
-function Window({ setWindowIsVisible }) {
+function Window({ content, setWindowIsVisible }) {
   function handleClick() {
     setWindowIsVisible(false)
   }
@@ -25,17 +16,25 @@ function Window({ setWindowIsVisible }) {
     <div className="content-window">
       <div className="content-window-header">
         <div onClick={handleClick} className="close-button"></div>
-        <span className="window-title">work</span>
+        <span className="window-title">{content}</span>
       </div>
-      <div className='projects'>
-        <Project src={wiktokPreview} title={"Wik-Tok"} description={"An infinitely scrollable feed of random Wikipedia articles, with functionality to make an account and save articles."}/>
-        <Project src={atgPreview} title={"Alt-Text Generator"} description={"A JavaScript package to automatically generate descriptive alt-text for image files, utilising an AI vision model."}/>
-      </div>
+      { content === "work" && <Projects />}
+      { content === "blog" && <Blog />}
+      { content === "contact" && <Contact />}
     </div>
   )
 }
 
 function Project({ src, title, description }) {
+  const iconImages = [
+    {key: 1, src: jsIcon},
+    {key: 2, src: reactIcon},
+    {key: 3, src: viteIcon},
+    {key: 4, src: nodeIcon},
+    {key: 5, src: expressIcon},
+    {key: 6, src: mongoIcon},
+  ]
+
   const icons = iconImages.map(icon => 
     <img className='stack-icon' src={icon.src} key={icon.key}></img>
   )
@@ -51,6 +50,22 @@ function Project({ src, title, description }) {
       </div>
     </div>
   )
+}
+
+function Projects() {
+  return(
+    <div className='projects'>
+      <Project src={wiktokPreview} title={"Wik-Tok"} description={"An infinitely scrollable feed of random Wikipedia articles, with functionality to make an account and save articles."}/>
+      <Project src={atgPreview} title={"Alt-Text Generator"} description={"A JavaScript package to automatically generate descriptive alt-text for image files, utilising an AI vision model."}/>
+    </div>)
+}
+
+function Contact() {
+
+}
+
+function Blog() {
+
 }
 
 export default Window
