@@ -221,3 +221,20 @@ main {
 .folder-image {
   width: 30px;
 }
+
+.contacts {
+  display: flex;
+  gap: 10px;
+}
+
+.contact-button {
+  border: none;
+  background-color: var(--grey);
+  color: var(--grey-background);
+  display: flex;
+  gap: 5px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 1),
+    inset 0px 0px 5px 1px rgba(255, 255, 255, 0.35);
+}
