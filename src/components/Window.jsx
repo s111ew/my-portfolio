@@ -1,5 +1,7 @@
-import wiktokPreview from '../assets/wiktok-preview.png'
-import atgPreview from '../assets/atg-preview.png'
+import wiktokPreview from '../assets/wiktokGif.gif'
+import atgPreview from '../assets/atgGif.gif'
+import wiktokPreviewStill from '../assets/wiktokGifStill.webp'
+import atgPreviewStill from '../assets/atgGifStill.webp'
 import jsIcon from '../assets/icons/javascriptIcon.webp'
 import reactIcon from '../assets/icons/reactIcon.webp'
 import viteIcon from '../assets/icons/viteIcon.webp'
@@ -9,6 +11,8 @@ import mongoIcon from '../assets/icons/mongoIcon.webp'
 import openaiIcon from '../assets/icons/openaiIcon.webp'
 import postgreIcon from '../assets/icons/postgreIcon.webp'
 import electronIcon from '../assets/icons/electronIcon.webp'
+import arrowDown from '../assets/arrowDown.svg'
+import { useState } from 'react'
 
 
 
@@ -30,7 +34,16 @@ function Window({ content, setWindowIsVisible }) {
   )
 }
 
-function Project({ src, title, description }) {
+function Projects() {
+  return(
+    <div className='projects'>
+      <Project gifSrc='' imgSrc='' title={"Paper Trail"} description={"Version control system for authors to watch and save progress of raw text files."}/>
+      <Project gifSrc={wiktokPreview} imgSrc={wiktokPreviewStill} title={"Wik-Tok"} description={"An infinitely scrollable feed of random Wikipedia articles, with functionality to make an account and save articles."}/>
+      <Project gifSrc={atgPreview} imgSrc={atgPreviewStill} title={"Alt-Text Generator"} description={"A JavaScript package to automatically generate descriptive alt-text for image files, utilising an AI vision model."}/>
+    </div>)
+}
+
+function Project({ gifSrc, imgSrc, title, description }) {
   let iconImages = [
     {key: 1, src: jsIcon},
     {key: 2, src: reactIcon},
@@ -62,25 +75,36 @@ function Project({ src, title, description }) {
   )
   return(
     <div className="project-container">
-      <img className="project-preview" src={src} alt="" />
+      <PreviewImage gifSrc={gifSrc} imgSrc={imgSrc}/>
       <div className="project-information">
         <h2 className="project-title">{title}</h2>
         <p className="project-description">{description}</p>
-        <div className="stack-icons-container">
-          {icons}
+        <div className="project-footer">
+          <div className="stack-icons-container">
+            {icons}
+          </div>
+          <div className='read-more'>
+            <p>Read More</p>
+            <img src={arrowDown} alt="Arrow down" />
+          </div>
         </div>
       </div>
     </div>
   )
 }
 
-function Projects() {
-  return(
-    <div className='projects'>
-      <Project src={wiktokPreview} title={"Paper Trail"} description={"Version control system for authors to watch and save progress of raw text files."}/>
-      <Project src={wiktokPreview} title={"Wik-Tok"} description={"An infinitely scrollable feed of random Wikipedia articles, with functionality to make an account and save articles."}/>
-      <Project src={atgPreview} title={"Alt-Text Generator"} description={"A JavaScript package to automatically generate descriptive alt-text for image files, utilising an AI vision model."}/>
-    </div>)
+function PreviewImage({ gifSrc, imgSrc }) {
+  const [src, setSrc] = useState(imgSrc);
+
+  return (
+    <img 
+      onMouseEnter={() => setSrc(gifSrc)} 
+      onMouseLeave={() => setSrc(imgSrc)} 
+      className='project-preview' 
+      src={src} 
+      alt="Project preview"
+    />
+  );
 }
 
 function Contact() {

@@ -181,6 +181,25 @@ main {
   justify-content: space-between;
 }
 
+.project-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.read-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.read-more > p {
+  font-size: 13px;
+}
+
+.read-more > img {
+  width: 24px;
+}
+
 .stack-icons-container {
   display: flex;
   gap: 10px;
