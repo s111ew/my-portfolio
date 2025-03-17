@@ -1,11 +1,16 @@
 import wiktokPreview from '../assets/wiktok-preview.png'
 import atgPreview from '../assets/atg-preview.png'
-import jsIcon from '../assets/icons/icon_javascript.webp'
-import reactIcon from '../assets/icons/icon_react.webp'
-import viteIcon from '../assets/icons/icon_vite.webp'
-import nodeIcon from '../assets/icons/icon_node.webp'
-import expressIcon from '../assets/icons/icon_express.webp'
-import mongoIcon from '../assets/icons/icon_mongo.webp'
+import jsIcon from '../assets/icons/javascriptIcon.webp'
+import reactIcon from '../assets/icons/reactIcon.webp'
+import viteIcon from '../assets/icons/viteIcon.webp'
+import nodeIcon from '../assets/icons/nodeIcon.webp'
+import expressIcon from '../assets/icons/expressIcon.webp'
+import mongoIcon from '../assets/icons/mongoIcon.webp'
+import openaiIcon from '../assets/icons/openaiIcon.webp'
+import postgreIcon from '../assets/icons/postgreIcon.webp'
+import electronIcon from '../assets/icons/electronIcon.webp'
+
+
 
 function Window({ content, setWindowIsVisible }) {
   function handleClick() {
@@ -26,17 +31,34 @@ function Window({ content, setWindowIsVisible }) {
 }
 
 function Project({ src, title, description }) {
-  const iconImages = [
+  let iconImages = [
     {key: 1, src: jsIcon},
     {key: 2, src: reactIcon},
     {key: 3, src: viteIcon},
     {key: 4, src: nodeIcon},
     {key: 5, src: expressIcon},
     {key: 6, src: mongoIcon},
+    {key: 7, src: openaiIcon},
+    {key: 8, src: postgreIcon},
+    {key: 9, src: electronIcon},
   ]
 
+  switch (title) {
+    case "Paper Trail":
+      iconImages = [iconImages[0], iconImages[1], iconImages[3], iconImages[4], iconImages[7], iconImages[8]]
+      break;
+    case "Wik-Tok":
+      iconImages = [iconImages[0], iconImages[1], iconImages[2], iconImages[3], iconImages[4], iconImages[5]]
+      break;
+    case "Alt-Text Generator":
+      iconImages = [iconImages[0], iconImages[1], iconImages[2], iconImages[3], iconImages[6]]
+      break;
+  }
+
   const icons = iconImages.map(icon => 
-    <img className='stack-icon' src={icon.src} key={icon.key}></img>
+    <div key={icon.key} className='stack-border' >
+      <img className='stack-icon' src={icon.src} ></img>
+    </div>
   )
   return(
     <div className="project-container">
@@ -55,6 +77,7 @@ function Project({ src, title, description }) {
 function Projects() {
   return(
     <div className='projects'>
+      <Project src={wiktokPreview} title={"Paper Trail"} description={"Version control system for authors to watch and save progress of raw text files."}/>
       <Project src={wiktokPreview} title={"Wik-Tok"} description={"An infinitely scrollable feed of random Wikipedia articles, with functionality to make an account and save articles."}/>
       <Project src={atgPreview} title={"Alt-Text Generator"} description={"A JavaScript package to automatically generate descriptive alt-text for image files, utilising an AI vision model."}/>
     </div>)
