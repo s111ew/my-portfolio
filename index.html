@@ -10,19 +10,30 @@
     />
     <meta name="author" content="Sam Llewellyn" />
     <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
     <title>Sam Llewellyn</title>
   </head>
   <body>
     <header>
       <p
         >Hi, I'm <span class="highlight">Sam Llewellyn</span>, an Apprentice
-        Software Engineer at <span class="highlight">Google</span>.</p
+        Software Engineer about to start at
+        <span class="highlight">Google</span>.</p
       >
       <p
         >I have a passion for building low-latency systems for the web so I've
         optimized this site for performance — this time it loaded in just
-        <span class="highlight">200ms</span>.</p
+        <span id="timer" class="highlight"></span>.</p
       >
+      <script>
+        window.addEventListener("load", function () {
+          const loadTime = performance.now();
+          const timerSpan = document.querySelector("#timer");
+          if (timerSpan) {
+            timerSpan.textContent = `${Math.round(loadTime)} ms`;
+          }
+        });
+      </script>
       <p
         >Feel free to explore some of my projects below or check out my
         <a
@@ -38,6 +49,7 @@
     <section class="projects">
       <div class="file-system-wrapper"
         ><img
+          draggable="false"
           class="drawer"
           src="./assets/drawer.svg"
           alt="Line drawing of a drawer containing folders"
@@ -47,11 +59,15 @@
           ><div class="file-wrapper">
             <div class="file"
               ><img
+                draggable="false"
                 src="./assets/files/file-1-blank.svg"
                 alt="Line drawing of a paper folder"
             /></div>
-            <div tabindex="0" class="file project one">
+            <!-- Project 1 -->
+            <div id="1" class="file project one">
+              <p tabindex="0" class="index">001</p>
               <img
+                draggable="false"
                 src="./assets/files/file-3-fill.svg"
                 alt="Line drawing of a paper folder"
               />
@@ -67,11 +83,17 @@
                 </p>
                 <div class="project-button-container">
                   <a
+                    tabindex="-1"
+                    class="button"
                     href="https://github.com/s111ew/alt-text-generator"
                     target="_blank"
                     >Github Repo</a
                   >
-                  <a href="https://alt-text-gen.com/" target="_blank"
+                  <a
+                    tabindex="-1"
+                    class="button"
+                    href="https://alt-text-gen.com/"
+                    target="_blank"
                     >Live Site</a
                   >
                 </div>
@@ -79,12 +101,16 @@
             </div>
             <div class="file">
               <img
+                draggable="false"
                 src="./assets/files/file-1-blank.svg"
                 alt="Line drawing of a paper folder"
               />
             </div>
-            <div tabindex="0" class="file project two">
+            <!-- Project 2 -->
+            <div id="2" class="file project two">
+              <p tabindex="0" class="index">002</p>
               <img
+                draggable="false"
                 src="./assets/files/file-2-fill.svg"
                 alt="Line drawing of a paper folder"
               />
@@ -99,7 +125,11 @@
                   with an educational twist.
                 </p>
                 <div class="project-button-container">
-                  <a href="https://github.com/s111ew/wik-tok" target="_blank"
+                  <a
+                    tabindex="-1"
+                    class="button"
+                    href="https://github.com/s111ew/wik-tok"
+                    target="_blank"
                     >Github Repo</a
                   >
                 </div>
@@ -107,12 +137,16 @@
             </div>
             <div class="file">
               <img
+                draggable="false"
                 src="./assets/files/file-3-blank.svg"
                 alt="Line drawing of a paper folder"
               />
             </div>
-            <div tabindex="0" class="file project three">
+            <!-- Project 3 -->
+            <div id="3" class="file project three">
+              <p tabindex="0" class="index">003</p>
               <img
+                draggable="false"
                 src="./assets/files/file-1-fill.svg"
                 alt="Line drawing of a paper folder"
               />
@@ -127,7 +161,7 @@
                   between machines — all from the terminal.
                 </p>
                 <div class="project-button-container">
-                  <p>Work in progress...</p>
+                  <p class="button">Work in progress...</p>
                 </div>
               </div>
             </div>

@@ -184,39 +184,30 @@ a:hover {
   transform: translateY(-10px);
 }
 
-.project.focussed {
+.project.active {
   transform: translateY(-220px);
 }
 
-.project:after {
+.index {
   position: absolute;
   font-size: 14px;
   color: #1e1e1e;
-  top: 5px;
+  top: -3%;
   z-index: 10;
 }
 
-.project:not(.focussed):hover:after {
-  text-decoration: underline;
-}
-
-.focussed:hover {
-  cursor: default;
-}
-
-.one:after {
-  content: "001";
+.one > .index {
   left: 17%;
 }
-
-.two:after {
-  content: "002";
+.two > .index {
   left: 48%;
 }
+.three > .index {
+  right: 18%;
+}
 
-.three:after {
-  content: "003";
-  right: 17%;
+.active:hover {
+  cursor: default;
 }
 
 footer {
