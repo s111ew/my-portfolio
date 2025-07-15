@@ -3,62 +3,136 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Software Engineer Portfolio" />
+    <meta
+      name="keywords"
+      content="HTML, CSS, JavaScript, Go, Golang, Google, Portfolio, Software"
+    />
+    <meta name="author" content="Sam Llewellyn" />
     <link rel="stylesheet" href="style.css" />
     <title>Sam Llewellyn</title>
   </head>
   <body>
     <header>
       <p
-        >Hi, I'm <span class="highlight">Sam Llewellyn</span>, a Software
-        Engineer at <span class="highlight">Google</span>.</p
+        >Hi, I'm <span class="highlight">Sam Llewellyn</span>, an Apprentice
+        Software Engineer at <span class="highlight">Google</span>.</p
       >
       <p
         >I have a passion for building low-latency systems for the web so I've
         optimized this site for performance — this time it loaded in just
-        ${pageLoadTime}ms.</p
+        <span class="highlight">200ms</span>.</p
       >
       <p
         >Feel free to explore some of my projects below or check out my
-        <a href="https://github.com/s111ew/" target="_blank" noreferrer
+        <a
+          tabindex="0"
+          href="https://github.com/s111ew/"
+          target="_blank"
+          noreferrer
           >GitHub</a
         >
         to see what else I've been working on.</p
       >
     </header>
-    <section class="folder-container">
-      <img
-        class="folder-image"
-        src="/assets/1_is_open.svg"
-        alt="A file system displaying projects"
-      />
-      <div class="number-container">
-        <p tabindex="0" class="number">001</p>
-        <p tabindex="0" class="number">002</p>
-        <p tabindex="0" class="number">003</p>
-      </div>
-      <div class="project-information">
-        <p class="project-title"
-          ><span class="highlight">catch-p2p</span> - P2P binary file sharing
-          service</p
+    <section class="projects">
+      <div class="file-system-wrapper"
+        ><img
+          class="drawer"
+          src="./assets/drawer.svg"
+          alt="Line drawing of a drawer containing folders"
+        />
+        <p class="label">Projects</p>
+        <div class="wrapper"
+          ><div class="file-wrapper">
+            <div class="file"
+              ><img
+                src="./assets/files/file-1-blank.svg"
+                alt="Line drawing of a paper folder"
+            /></div>
+            <div tabindex="0" class="file project one">
+              <img
+                src="./assets/files/file-3-fill.svg"
+                alt="Line drawing of a paper folder"
+              />
+              <div class="project-information">
+                <p class="project-title"
+                  ><span class="highlight">alt-text-generator</span> -
+                  Automatically generate ALT-text tags from image file inputs</p
+                >
+                <p class="project-description">
+                  A Node.js package leveraging OpenAI's vision API to analyse
+                  batches of image files, outputting descriptive ALT-text tags
+                  to increase accessibility on the web.
+                </p>
+                <div class="project-button-container">
+                  <a
+                    href="https://github.com/s111ew/alt-text-generator"
+                    target="_blank"
+                    >Github Repo</a
+                  >
+                  <a href="https://alt-text-gen.com/" target="_blank"
+                    >Live Site</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="file">
+              <img
+                src="./assets/files/file-1-blank.svg"
+                alt="Line drawing of a paper folder"
+              />
+            </div>
+            <div tabindex="0" class="file project two">
+              <img
+                src="./assets/files/file-2-fill.svg"
+                alt="Line drawing of a paper folder"
+              />
+              <div class="project-information">
+                <p class="project-title"
+                  ><span class="highlight">wik-tok</span> - Webapp featuring an
+                  infinitely scrollable feed of Wikipedia articles</p
+                >
+                <p class="project-description">
+                  A mobile-first webapp with a Tik-Tok style infinite feed that
+                  displays previews of Wikipedia articles - to combat boredom
+                  with an educational twist.
+                </p>
+                <div class="project-button-container">
+                  <a href="https://github.com/s111ew/wik-tok" target="_blank"
+                    >Github Repo</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="file">
+              <img
+                src="./assets/files/file-3-blank.svg"
+                alt="Line drawing of a paper folder"
+              />
+            </div>
+            <div tabindex="0" class="file project three">
+              <img
+                src="./assets/files/file-1-fill.svg"
+                alt="Line drawing of a paper folder"
+              />
+              <div class="project-information">
+                <p class="project-title"
+                  ><span class="highlight">catch-p2p</span> - P2P binary file
+                  sharing service</p
+                >
+                <p class="project-description">
+                  A lightweight, open-source peer-to-peer file sharing service
+                  designed for seamless and secure transfer of binary files
+                  between machines — all from the terminal.
+                </p>
+                <div class="project-button-container">
+                  <p>Work in progress...</p>
+                </div>
+              </div>
+            </div>
+          </div></div
         >
-        <p class="project-description">
-          <br />A lightweight, open-source peer-to-peer file sharing service
-          designed for seamless and secure transfer of binary files between
-          machines—all from the terminal.<br /><br />With full end-to-end
-          encryption and a focus on preserving terminal-based (TUI) workflows,
-          catch-p2p makes it easy to share files without leaving your CLI
-          environment.
-        </p>
-        <p class="project-tech-stack">
-          Tech stack:
-          <a tabindex="0" href="https://go.dev/" target="_blank" noreferrer
-            >Go</a
-          >
-        </p>
-        <div class="project-button-container">
-          <button>Github Repo</button>
-          <button>Go Package</button>
-        </div>
       </div>
     </section>
     <footer>

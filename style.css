@@ -15,6 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  line-height: 24px;
 }
 
 a {
@@ -31,55 +32,191 @@ a:hover {
   border-radius: 3px;
 }
 
-.folder-container {
-  width: clamp(650px, 100%, 795px);
+.projects {
+  padding-top: 120px;
+}
+
+.file-system-wrapper {
+  position: relative;
+  width: 776px;
   margin-left: auto;
   margin-right: auto;
-  display: flex;
-  justify-content: center;
+}
+
+.drawer {
+  width: 776px;
+  height: 501px;
+}
+
+.label {
+  position: absolute;
+  left: 348px;
+  top: 361px;
+  color: white;
+}
+
+.wrapper {
+  top: -34.5%;
+  position: absolute;
+  width: 90%;
+  height: 88%;
+  z-index: 1;
+  left: 5%;
+  overflow-y: hidden;
+}
+
+.file-wrapper {
   position: relative;
+  height: 100%;
 }
 
-.folder-image {
+.file {
+  position: absolute;
+}
+
+.file > img {
   width: 100%;
 }
 
-.number-container {
-  width: 100%;
+.file > .project-information {
+  width: 90%;
+  font-size: 12px;
   position: absolute;
-  top: -4px;
-  left: 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-.number {
-  padding: 0 5px;
-}
-
-.number:hover {
-  border-bottom: 2px solid white;
-  cursor: pointer;
-}
-
-.project-information {
-  position: absolute;
-  top: 32px;
-  padding: 20px 50px;
+  top: 15%;
+  left: 5%;
 }
 
 .project-button-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
+  padding-top: 20px;
 }
 
-button {
-  background-color: #202020;
-  border: 1px solid white;
+.project-button-container > p,
+.project-button-container > a {
   padding: 5px 10px;
-  color: white;
-  font-family: inherit;
+  background-color: white;
+  color: #1e1e1e;
+}
+
+.project-button-container > a {
+  text-decoration: none;
+}
+
+.project-button-container > a:hover {
+  text-decoration: underline;
+}
+
+.file:nth-child(1) {
+  top: 180px;
+  left: 5%;
+  z-index: 1;
+}
+
+.file:nth-child(1) > img {
+  width: 628px;
+  height: 326px;
+}
+
+.file:nth-child(2) {
+  top: 220px;
+  width: 92%;
+  left: 4%;
+  z-index: 2;
+}
+
+.file:nth-child(2) > img {
+  width: 643px;
+  height: 335px;
+}
+
+.file:nth-child(3) {
+  top: 260px;
+  width: 94%;
+  left: 3%;
+  z-index: 3;
+}
+
+.file:nth-child(3) > img {
+  width: 656px;
+  height: 341px;
+}
+
+.file:nth-child(4) {
+  top: 300px;
+  width: 96%;
+  left: 2%;
+  z-index: 4;
+}
+
+.file:nth-child(4) > img {
+  width: 670px;
+  height: 348px;
+}
+
+.file:nth-child(5) {
+  top: 340px;
+  width: 98%;
+  left: 1%;
+  z-index: 5;
+}
+
+.file:nth-child(5) > img {
+  width: 684px;
+  height: 357px;
+}
+
+.file:nth-child(6) {
+  top: 380px;
+  width: 100%;
+  z-index: 6;
+}
+
+.file:nth-child(6) > img {
+  width: 698px;
+  height: 363px;
+}
+
+.project:hover {
+  cursor: pointer;
+  transition: transform ease 0.5s;
+  transform: translateY(-10px);
+}
+
+.project.focussed {
+  transform: translateY(-220px);
+}
+
+.project:after {
+  position: absolute;
+  font-size: 14px;
+  color: #1e1e1e;
+  top: 5px;
+  z-index: 10;
+}
+
+.project:not(.focussed):hover:after {
+  text-decoration: underline;
+}
+
+.focussed:hover {
+  cursor: default;
+}
+
+.one:after {
+  content: "001";
+  left: 17%;
+}
+
+.two:after {
+  content: "002";
+  left: 48%;
+}
+
+.three:after {
+  content: "003";
+  right: 17%;
 }
 
 footer {
