@@ -180,8 +180,14 @@ a:hover {
 
 .project:hover {
   cursor: pointer;
-  transition: transform ease 0.5s;
-  transform: translateY(-10px);
+}
+
+.project:hover > .index {
+  text-decoration: underline;
+}
+
+.project {
+  transition: 0.4s ease;
 }
 
 .project.active {
@@ -194,16 +200,18 @@ a:hover {
   color: #1e1e1e;
   top: -3%;
   z-index: 10;
+  padding: 0px 5px;
 }
 
 .one > .index {
-  left: 17%;
+  left: 105px;
 }
 .two > .index {
-  left: 48%;
+  left: 316px;
 }
 .three > .index {
-  right: 18%;
+  right: 120px;
+  top: -2.5%;
 }
 
 .active:hover {
