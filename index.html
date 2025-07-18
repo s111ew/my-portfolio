@@ -15,15 +15,33 @@
   </head>
   <body>
     <header>
+      <table>
+        <thead>
+          <tr
+            ><th>Today</th>
+            <th>Time to Load Page</th>
+            <th>Keyboard Navigation</th></tr
+          >
+        </thead>
+        <tr>
+          <td
+            ><p><span id="dateTime"></span></p
+          ></td>
+          <td
+            ><p><span id="timer"></span></p
+          ></td>
+          <td
+            ><p
+              >TAB <span class="symbol">⇥</span> + ENTER
+              <span class="symbol">↵</span></p
+            ></td
+          >
+        </tr>
+      </table>
       <p
         >Hi, I'm <span class="highlight">Sam Llewellyn</span>, an Apprentice
         Software Engineer about to start at
         <span class="highlight">Google</span>.</p
-      >
-      <p
-        >I have a passion for building low-latency systems for the web so I've
-        optimized this site for performance — this time it loaded in just
-        <span id="timer" class="highlight"></span>.</p
       >
       <script>
         window.addEventListener("load", function () {
@@ -33,6 +51,50 @@
             timerSpan.textContent = `${Math.round(loadTime)} ms`;
           }
         });
+
+        function formatDateTime(date) {
+          const monthNames = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
+
+          const month = monthNames[date.getMonth()];
+          const day = date.getDate();
+          const hours = String(date.getHours()).padStart(2, "0");
+          const minutes = String(date.getMinutes()).padStart(2, "0");
+
+          const timezoneOffsetMinutes = date.getTimezoneOffset();
+          const offsetHours = -Math.floor(timezoneOffsetMinutes / 60);
+          const sign = offsetHours >= 0 ? "+" : "-";
+
+          return `${month} ${day}, ${hours}:${minutes} (GMT${sign}${Math.abs(
+            offsetHours
+          )})`;
+        }
+
+        function updateDateTime() {
+          const now = new Date();
+          const span = document.getElementById("dateTime");
+          if (span) {
+            span.textContent = formatDateTime(now);
+          }
+
+          const msToNextMinute =
+            (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
+          setTimeout(updateDateTime, msToNextMinute);
+        }
+
+        updateDateTime();
       </script>
       <p
         >Feel free to explore some of my projects below or check out my

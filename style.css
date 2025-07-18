@@ -32,8 +32,28 @@ a:hover {
   border-radius: 3px;
 }
 
-.projects {
-  padding-top: 120px;
+.symbol {
+  font-size: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+tr > * {
+  border: 1px solid white;
+  padding: 5px 10px;
+}
+
+td > p {
+  margin: 0;
+}
+
+header {
+  margin-bottom: 160px;
 }
 
 .file-system-wrapper {
@@ -224,4 +244,262 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+@media screen and (max-width: 846px) {
+  header {
+    margin-bottom: 90px;
+  }
+  .wrapper {
+    top: -35%;
+  }
+  .file-system-wrapper {
+    width: 476px;
+  }
+
+  .drawer {
+    width: 476px;
+    height: 307px;
+  }
+
+  .label {
+    font-size: 12px;
+    left: 211px;
+    top: 215px;
+  }
+
+  .file:nth-child(1) {
+    top: 111px;
+    left: 5%;
+    z-index: 1;
+  }
+
+  .file:nth-child(1) > img {
+    width: 385px;
+    height: 200px;
+  }
+
+  .file:nth-child(2) {
+    top: 135px;
+    width: 92%;
+    left: 4%;
+    z-index: 2;
+  }
+
+  .file:nth-child(2) > img {
+    width: 394px;
+    height: 205px;
+  }
+
+  .file:nth-child(3) {
+    top: 159px;
+    width: 94%;
+    left: 3%;
+    z-index: 3;
+  }
+
+  .file:nth-child(3) > img {
+    width: 402px;
+    height: 209px;
+  }
+
+  .file:nth-child(4) {
+    top: 184px;
+    width: 96%;
+    left: 2%;
+    z-index: 4;
+  }
+
+  .file:nth-child(4) > img {
+    width: 411px;
+    height: 213px;
+  }
+
+  .file:nth-child(5) {
+    top: 209px;
+    width: 98%;
+    left: 1%;
+    z-index: 5;
+  }
+
+  .file:nth-child(5) > img {
+    width: 420px;
+    height: 219px;
+  }
+
+  .file:nth-child(6) {
+    top: 233px;
+    width: 100%;
+    z-index: 6;
+  }
+
+  .file:nth-child(6) > img {
+    width: 428px;
+    height: 223px;
+  }
+
+  .index {
+    font-size: 11px;
+  }
+  .one > .index {
+    left: 65px;
+    top: -12px;
+  }
+  .two > .index {
+    left: 195px;
+    top: -12px;
+  }
+  .three > .index {
+    right: 65px;
+    top: -12px;
+  }
+
+  .file > .project-information {
+    font-size: 10px;
+  }
+
+  .project-description {
+    display: none;
+  }
+
+  .project-button-container > p,
+  .project-button-container > a {
+    padding: 2px 5px;
+    font-size: 10px;
+  }
+
+  .project.active {
+    transform: translateY(-120px);
+  }
+
+  .project-button-container {
+    padding-top: 8px;
+  }
+}
+
+@media screen and (max-width: 527px) {
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  header {
+    padding: 15px 15px 15px 20px;
+  }
+
+  table {
+    display: none;
+  }
+
+  .file-system-wrapper {
+    width: 396px;
+  }
+
+  .drawer {
+    width: 396px;
+    height: 255px;
+  }
+
+  .label {
+    font-size: 12px;
+    left: 170px;
+    top: 175px;
+  }
+
+  .file:nth-child(1) {
+    top: 102px;
+  }
+
+  .file:nth-child(1) > img {
+    width: 320px;
+    height: 166px;
+  }
+
+  .file:nth-child(2) {
+    top: 122px;
+  }
+
+  .file:nth-child(2) > img {
+    width: 328px;
+    height: 171px;
+  }
+
+  .file:nth-child(3) {
+    top: 142px;
+  }
+
+  .file:nth-child(3) > img {
+    width: 334px;
+    height: 174px;
+  }
+
+  .file:nth-child(4) {
+    top: 163px;
+  }
+
+  .file:nth-child(4) > img {
+    width: 342px;
+    height: 177px;
+  }
+
+  .file:nth-child(5) {
+    top: 184px;
+  }
+
+  .file:nth-child(5) > img {
+    width: 349px;
+    height: 182px;
+  }
+
+  .file:nth-child(6) {
+    top: 204px;
+  }
+
+  .file:nth-child(6) > img {
+    width: 356px;
+    height: 186px;
+  }
+
+  .index {
+    font-size: 11px;
+  }
+  .one > .index {
+    left: 52px;
+    top: -14px;
+  }
+  .two > .index {
+    left: 158px;
+    top: -14px;
+  }
+  .three > .index {
+    right: 52px;
+    top: -13px;
+  }
+
+  .file > .project-information {
+    font-size: 10px;
+  }
+
+  .project-description {
+    display: none;
+  }
+
+  .project-button-container > p,
+  .project-button-container > a {
+    padding: 2px 5px;
+    font-size: 10px;
+  }
+
+  .project.active {
+    transform: translateY(-120px);
+  }
+
+  .project-button-container {
+    padding-top: 8px;
+  }
+
+  .wrapper {
+    top: -39%;
+    height: 92%;
+  }
 }
