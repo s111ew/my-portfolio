@@ -16,11 +16,12 @@
   <body>
     <header>
       <table>
+        <caption>Website Load Statistics</caption>
         <thead>
           <tr
             ><th>Today</th>
-            <th>Time to Load Page</th>
-            <th>Keyboard Navigation</th></tr
+            <th>Time to Load</th>
+            <th>HTTP Requests</th></tr
           >
         </thead>
         <tr>
@@ -31,11 +32,8 @@
             ><p><span id="timer"></span></p
           ></td>
           <td
-            ><p
-              >TAB <span class="symbol">⇥</span> + ENTER
-              <span class="symbol">↵</span></p
-            ></td
-          >
+            ><p><span id="packets"></span></p
+          ></td>
         </tr>
       </table>
       <p
@@ -50,6 +48,9 @@
           if (timerSpan) {
             timerSpan.textContent = `${Math.round(loadTime)} ms`;
           }
+
+          displayRequests();
+          displayDateTime();
         });
 
         function formatDateTime(date) {
@@ -82,19 +83,31 @@
           )})`;
         }
 
-        function updateDateTime() {
+        function displayDateTime() {
           const now = new Date();
           const span = document.getElementById("dateTime");
           if (span) {
             span.textContent = formatDateTime(now);
           }
-
-          const msToNextMinute =
-            (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
-          setTimeout(updateDateTime, msToNextMinute);
         }
 
-        updateDateTime();
+        function displayRequests() {
+          const span = document.getElementById("packets");
+          const reqs = performance.getEntriesByType("resource");
+          const num = reqs.length;
+
+          let decoded = 0;
+
+          reqs.forEach((req) => {
+            decoded += Math.round(req.decodedBodySize / 1024);
+          });
+
+          if (decoded === 0) {
+            decoded = "<1";
+          }
+
+          span.textContent = `${reqs.length} [Size: ${decoded} KB]`;
+        }
       </script>
       <p
         >Feel free to explore some of my projects below or check out my
@@ -232,7 +245,7 @@
       </div>
     </section>
     <footer>
-      <p>Contact me:</p>
+      <p>Contact:</p>
       <a href="mailto:sam.j.llew@gmail.com">Email</a>
       <p>|</p>
       <a href="https://www.linkedin.com/in/sam-llewellyn/">Linkedin</a>
