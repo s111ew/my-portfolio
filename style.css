@@ -35,28 +35,19 @@ a:hover {
   font-size: 20px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 30px;
-  font-size: 12px;
-}
-
-table > caption {
-  color: #d9d9d9;
-}
-
-tr > * {
-  border: 1px solid #5a5a5a;
-  padding: 5px 10px;
-}
-
-td > p {
-  margin: 0;
-}
-
 header {
   margin-bottom: 180px;
+}
+
+h1 {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: normal;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .file-system-wrapper {

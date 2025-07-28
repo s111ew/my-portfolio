@@ -15,31 +15,27 @@
   </head>
   <body>
     <header>
-      <table>
-        <caption>Website Load Statistics</caption>
-        <thead>
-          <tr
-            ><th>Today</th>
-            <th>Time to Load</th>
-            <th>HTTP Requests</th></tr
-          >
-        </thead>
-        <tr>
-          <td
-            ><p><span id="dateTime"></span></p
-          ></td>
-          <td
-            ><p><span id="timer"></span></p
-          ></td>
-          <td
-            ><p><span id="packets"></span></p
-          ></td>
-        </tr>
-      </table>
+      <h1
+        >Hi there, I'm <span class="title">Sam Llewellyn</span> (Software
+        Engineer).</h1
+      >
       <p
-        >Hi, I'm <span class="highlight">Sam Llewellyn</span>, an Apprentice
-        Software Engineer about to start at
-        <span class="highlight">Google</span>.</p
+        >Welcome to my personal website, where you can explore some of my
+        projects below or on my
+        <a
+          tabindex="0"
+          href="https://github.com/s111ew/"
+          target="_blank"
+          noreferrer
+          >GitHub</a
+        >
+        account.</p
+      >
+      <p
+        >In case you were curious, this page required
+        <span id="packets"></span> HTTP requests and loaded in
+        <span id="timer"></span>, with a total decoded transfer size of
+        <span id="size"></span>.</p
       >
       <script>
         window.addEventListener("load", function () {
@@ -74,13 +70,7 @@
           const hours = String(date.getHours()).padStart(2, "0");
           const minutes = String(date.getMinutes()).padStart(2, "0");
 
-          const timezoneOffsetMinutes = date.getTimezoneOffset();
-          const offsetHours = -Math.floor(timezoneOffsetMinutes / 60);
-          const sign = offsetHours >= 0 ? "+" : "-";
-
-          return `${month} ${day}, ${hours}:${minutes} (GMT${sign}${Math.abs(
-            offsetHours
-          )})`;
+          return `${month} ${day}, ${hours}:${minutes}`;
         }
 
         function displayDateTime() {
@@ -92,7 +82,8 @@
         }
 
         function displayRequests() {
-          const span = document.getElementById("packets");
+          const reqsSpan = document.getElementById("packets");
+          const sizeSpan = document.getElementById("size");
           const reqs = performance.getEntriesByType("resource");
           const num = reqs.length;
 
@@ -106,20 +97,10 @@
             decoded = "<1";
           }
 
-          span.textContent = `${reqs.length} [Size: ${decoded} KB]`;
+          reqsSpan.textContent = `${reqs.length}`;
+          sizeSpan.textContent = `${decoded} KB`;
         }
       </script>
-      <p
-        >Feel free to explore some of my projects below or check out my
-        <a
-          tabindex="0"
-          href="https://github.com/s111ew/"
-          target="_blank"
-          noreferrer
-          >GitHub</a
-        >
-        to see what else I've been working on.</p
-      >
     </header>
     <section class="projects">
       <div class="file-system-wrapper"
